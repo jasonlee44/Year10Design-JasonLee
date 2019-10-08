@@ -1,3 +1,6 @@
+#***-----------IMPORTANT-----------***
+#Make you have the css code downloaded
+
 import requests
 
 def writeHTMLHead(country): #country variable: outputs to different HTML files
@@ -6,7 +9,7 @@ def writeHTMLHead(country): #country variable: outputs to different HTML files
     <html>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel = "stylesheet" type = "text/css" href = "style2.css" />
+    <link rel = "stylesheet" type = "text/css" href = "style.css" />
     </head>
     """)
     myfile.close()
@@ -58,7 +61,7 @@ def writeHTMLTable(country,city,aqi,level,health,statement,color):
     myfile.close()
 
 def writeHTMLEnd(country):
-    myfile = open("./{country}.html","a")
+    myfile = open(f"./{country}.html","a")
     myfile.write("""
            </table> 
         </body>
@@ -114,3 +117,4 @@ def main():
 main()
 for i in countries_str:
     writeHTMLEnd(i)
+print("Successful!")
