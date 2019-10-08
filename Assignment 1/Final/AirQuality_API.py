@@ -4,7 +4,7 @@
 import requests
 
 def writeHTMLHead(country): #country variable: outputs to different HTML files
-    myfile = open(f"./{country}.html","w")
+    myfile = open(f"./Final/{country}.html","w")
     myfile.write("""<!DOCTYPE html>
     <html>
     <head>
@@ -15,7 +15,7 @@ def writeHTMLHead(country): #country variable: outputs to different HTML files
     myfile.close()
 
 def writeHTMLNav(country):
-    myfile = open(f"./{country}.html","a")
+    myfile = open(f"./Final/{country}.html","a")
     myfile.write("""    <body>
         <div class="header" id = "home">
             <h1>Air Quality by Country</h1>
@@ -38,7 +38,7 @@ def writeHTMLNav(country):
     myfile.close()
 
 def writeHTMLTableTag(country):
-    myfile = open(f"./{country}.html","a")
+    myfile = open(f"./Final/{country}.html","a")
     myfile.write("""<table>
             <tr>
                 <th>City</th>
@@ -49,7 +49,7 @@ def writeHTMLTableTag(country):
             </tr>""")
 
 def writeHTMLTable(country,city,aqi,level,health,statement,color):
-    myfile = open(f"./{country}.html","a")
+    myfile = open(f"./Final/{country}.html","a")
     myfile.write(f"""
             <tr style = "background-color: {color};">
                 <td>{city}</td>
@@ -61,7 +61,7 @@ def writeHTMLTable(country,city,aqi,level,health,statement,color):
     myfile.close()
 
 def writeHTMLEnd(country):
-    myfile = open(f"./{country}.html","a")
+    myfile = open(f"./Final/{country}.html","a")
     myfile.write("""
            </table> 
         </body>
