@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<h1>Public Holidays in Canada</h1>
+<link rel = "stylesheet" type = "text/css" href = "style.css" />
+</head>
+<body>
+<table id="myTable">
+<tr>
+<th onclick="sortTable(0)">Name</th>
+<th onclick="sortTable(1)">Date</th>
+<th onclick="sortTable(2)">Country Wide</th>
+<th onclick="sortTable(3)">Regions(provinces, territories, states etc.)</th>
+</tr>
+<div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span><strong>Hello There!</strong> Welcome to my website. You can change the view of the table by clicking on the headers.</div>
+<tr>
+<td>New Year's Day</td>
+<td>2020-01-01</td>
+<td>Yes</td>
+<td>ALL</td>
+</tr>
+<tr>
+<td>Family Day</td>
+<td>2020-02-10</td>
+<td>No</td>
+<td>BC</td>
+</tr>
+<tr>
+<td>Louis Riel Day</td>
+<td>2020-02-17</td>
+<td>No</td>
+<td>MB</td>
+</tr>
+<tr>
+<td>Islander Day</td>
+<td>2020-02-17</td>
+<td>No</td>
+<td>PE</td>
+</tr>
+<tr>
+<td>Family Day</td>
+<td>2020-02-17</td>
+<td>No</td>
+<td>AB, ON, SK</td>
+</tr>
+<tr>
+<td>Heritage Day</td>
+<td>2020-02-17</td>
+<td>No</td>
+<td>NS</td>
+</tr>
+<tr>
+<td>Saint Patrick's Day</td>
+<td>2020-03-17</td>
+<td>No</td>
+<td>NL</td>
+</tr>
+<tr>
+<td>Good Friday</td>
+<td>2020-04-10</td>
+<td>Yes</td>
+<td>ALL</td>
+</tr>
+<tr>
+<td>Easter Monday</td>
+<td>2020-04-13</td>
+<td>No</td>
+<td>AB, PE</td>
+</tr>
+<tr>
+<td>Saint George's Day</td>
+<td>2020-04-23</td>
+<td>No</td>
+<td>NL</td>
+</tr>
+<tr>
+<td>National Patriots' Day</td>
+<td>2020-05-18</td>
+<td>No</td>
+<td>QC</td>
+</tr>
+<tr>
+<td>Victoria Day</td>
+<td>2020-05-18</td>
+<td>No</td>
+<td>AB, BC, MB, NB, NT, NS, NU, ON, PE, SK, YT</td>
+</tr>
+<tr>
+<td>National Aboriginal Day</td>
+<td>2020-06-21</td>
+<td>No</td>
+<td>NT</td>
+</tr>
+<tr>
+<td>Discovery Day</td>
+<td>2020-06-24</td>
+<td>No</td>
+<td>NL</td>
+</tr>
+<tr>
+<td>Fête nationale du Québec</td>
+<td>2020-06-24</td>
+<td>No</td>
+<td>QC</td>
+</tr>
+<tr>
+<td>Canada Day</td>
+<td>2020-07-01</td>
+<td>Yes</td>
+<td>ALL</td>
+</tr>
+<tr>
+<td>Orangemen's Day</td>
+<td>2020-07-12</td>
+<td>No</td>
+<td>NL</td>
+</tr>
+<tr>
+<td>Civic Holiday</td>
+<td>2020-08-03</td>
+<td>No</td>
+<td>BC, MB, NL, NT, NU, ON</td>
+</tr>
+<tr>
+<td>Heritage Day</td>
+<td>2020-08-03</td>
+<td>No</td>
+<td>AB, YT</td>
+</tr>
+<tr>
+<td>New Brunswick Day</td>
+<td>2020-08-03</td>
+<td>No</td>
+<td>NB</td>
+</tr>
+<tr>
+<td>Natal Day</td>
+<td>2020-08-03</td>
+<td>No</td>
+<td>NS</td>
+</tr>
+<tr>
+<td>Gold Cup Parade Day</td>
+<td>2020-08-17</td>
+<td>No</td>
+<td>PE</td>
+</tr>
+<tr>
+<td>Discovery Day</td>
+<td>2020-08-17</td>
+<td>No</td>
+<td>YT</td>
+</tr>
+<tr>
+<td>Labour Day</td>
+<td>2020-09-07</td>
+<td>Yes</td>
+<td>ALL</td>
+</tr>
+<tr>
+<td>Thanksgiving</td>
+<td>2020-10-12</td>
+<td>Yes</td>
+<td>ALL</td>
+</tr>
+<tr>
+<td>Armistice Day</td>
+<td>2020-11-11</td>
+<td>No</td>
+<td>NL</td>
+</tr>
+<tr>
+<td>Remembrance Day</td>
+<td>2020-11-11</td>
+<td>No</td>
+<td>AB, BC, NB, NT, NS, NU, PE, SK, YT</td>
+</tr>
+<tr>
+<td>Christmas Day</td>
+<td>2020-12-25</td>
+<td>Yes</td>
+<td>ALL</td>
+</tr>
+<tr>
+<td>St. Stephen's Day</td>
+<td>2020-12-26</td>
+<td>No</td>
+<td>AB, NB, NS, ON, PE</td>
+</tr>
+<script>function sortTable(n){var table,rows,switching,i,x,y,shouldSwitch,dir,switchcount=0;table=document.getElementById("myTable");switching=true;dir="asc";while(switching){switching=false;rows=table.rows;for(i=1;i<(rows.length-1);i++){shouldSwitch=false;x=rows[i].getElementsByTagName("TD")[n];y=rows[i+1].getElementsByTagName("TD")[n];if(dir=="asc"){if(x.innerHTML.toLowerCase()>y.innerHTML.toLowerCase()){shouldSwitch=true;break}}else if(dir=="desc"){if(x.innerHTML.toLowerCase()<y.innerHTML.toLowerCase()){shouldSwitch=true;break}}}if(shouldSwitch){rows[i].parentNode.insertBefore(rows[i+1],rows[i]);switching=true;switchcount++}else{if(switchcount==0&&dir=="asc"){dir="desc";switching=true}}}}</script>
+</table>
+</body>
+</html>
+<p>API: <a href="https://date.nager.at">https://date.nager.at<a></p>
