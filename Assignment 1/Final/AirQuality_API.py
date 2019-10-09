@@ -68,12 +68,13 @@ def writeHTMLEnd(country):
     </html>
     """)
 
+#list of cities
 canada = ["Toronto","Montreal","Vancouver","Calgary","Edmonton","Ottawa","Winnipeg","Quebec","Saskatoon"]
 china = ["Shanghai","Beijing","Chengdu","Hangzhou","Chongqing","Guangzhou","Shenzhen","Ürümqi","Xi\'an","Xiamen"]
 united_states = ["New York City","San Francisco","Los Angeles","Seattle","Chicago","Boston","Portland","Miami","Las Vegas","Philadelphia"]
 
-countries_str = ["canada","china","united_states"]
-countries = [canada,china,united_states]
+countries_str = ["canada","china","united_states"] #list of countries
+countries = [canada,china,united_states] #list of list of cities
 
 def main():
     for i in countries_str:
@@ -85,6 +86,7 @@ def main():
             response = requests.get(f"https://api.waqi.info/feed/{j}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
             if (response.status_code == 200):
                 data = response.json()
+                
                 if type(data['data']['aqi']).__name__ != "int":
                     level = "N/A"
                     health = "N/A"
@@ -95,19 +97,28 @@ def main():
                     level = "Good"
                     health = "Air quality is considered satisfactory, and air pollution poses little or no risk"
                     statement = "None"
-                    color = "rgb(51, 211, 51)"
+                    color = "rgb(51, 211, 51)"#green
+
                 elif data['data']['aqi'] <= 100:
                     level = "Moderate"
                     health = "Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution."
                     statement = "Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion."
-                    color = "rgb(255, 255, 100)"
+                    color = "rgb(255, 255, 100)"#yellow
+
                 elif data['data']['aqi'] <= 150:
                     level = "Unhealthy for Sensitive Groups"
                     health = "Members of sensitive groups may experience health effects. The general public is not likely to be affected."
                     statement = "Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion."
-                    color = "rgb(245, 125, 45)"
+                    color = "rgb(245, 125, 45)"#orange
 
-                writeHTMLTable(countries_str[i],j, data['data']['aqi'], level, health, statement, color )
+                elif data['data']['aqi'] <= 200:
+                    level = "Unhealthy"
+                    health = "Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects"
+                    statement = "Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion"
+                    color = "rgb(140, 0, 0)" #red
+                    
+                print((countries_str[i],j, data['data']['aqi'], level, color))
+                writeHTMLTable(countries_str[i],j, data['data']['aqi'], level, health, statement, color)
 
             else:
                 myfile = open("./Assignment 1/myapi.html","w")
