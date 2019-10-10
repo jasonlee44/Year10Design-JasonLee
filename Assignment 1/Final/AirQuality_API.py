@@ -29,8 +29,9 @@ def writeHTMLNav(country):
             </button>
             <div class="dropdown-content">
                 <a href="./canada.html">Canada</a>
-                <a href="./china.html">China</a>
                 <a href="./united_states.html">United States</a>
+                <a href="./china.html">China</a>
+                <a href="./england.html">England</a>
             </div>
         </div> 
     </div>
@@ -70,11 +71,13 @@ def writeHTMLEnd(country):
 
 #list of cities
 canada = ["Toronto","Montreal","Vancouver","Calgary","Edmonton","Ottawa","Winnipeg","Quebec","Saskatoon"]
-china = ["Shanghai","Beijing","Chengdu","Hangzhou","Chongqing","Guangzhou","Shenzhen","Ürümqi","Xi\'an","Xiamen"]
 united_states = ["New York City","San Francisco","Los Angeles","Seattle","Chicago","Boston","Portland","Miami","Las Vegas","Philadelphia"]
+china = ["Shanghai","Beijing","Chengdu","Hangzhou","Chongqing","Guangzhou","Shenzhen","Ürümqi","Xiamen"]
+england = ["London","Bristol","Liverpool","Manchester","Birmingham","Brighton","Oxford","Cambridge","Norwich"]
 
-countries_str = ["canada","china","united_states"] #list of countries
-countries = [canada,china,united_states] #list of list of cities
+
+countries_str = ["canada","united_states","china","england"] #list of countries
+countries = [canada,united_states,china,england] #list of list of cities
 
 def main():
     for i in countries_str:
@@ -117,7 +120,6 @@ def main():
                     statement = "Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion"
                     color = "rgb(140, 0, 0)" #red
                     
-                print((countries_str[i],j, data['data']['aqi'], level, color))
                 writeHTMLTable(countries_str[i],j, data['data']['aqi'], level, health, statement, color)
 
             else:
