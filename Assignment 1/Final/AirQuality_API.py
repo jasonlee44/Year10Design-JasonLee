@@ -74,7 +74,7 @@ canada = ["Toronto","Montreal","Vancouver","Calgary","Edmonton","Ottawa","Winnip
 united_states = ["New York City","San Francisco","Los Angeles","Seattle","Chicago","Boston","Portland","Miami","Las Vegas","Philadelphia"]
 china = ["Shanghai","Beijing","Chengdu","Hangzhou","Chongqing","Guangzhou","Shenzhen","Ürümqi","Xiamen"]
 england = ["London","Bristol","Liverpool","Manchester","Birmingham","Brighton","Oxford","Cambridge","Norwich"]
-
+germany = [""]
 
 countries_str = ["canada","united_states","china","england"] #list of countries
 countries = [canada,united_states,china,england] #list of list of cities
