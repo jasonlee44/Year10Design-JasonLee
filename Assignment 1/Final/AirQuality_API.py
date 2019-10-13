@@ -6,7 +6,7 @@ import time
 
 def writeHTMLHead(): 
     global myfile
-    myfile = open("./Final/output.html","w")
+    myfile = open("./Assignment 1/Final/output.html","w")
     myfile.write("""<!DOCTYPE html>
     <html>
     <head>
@@ -78,7 +78,7 @@ def entry_enter(): #submiting a city
     root.update()
     main()
     writeHTMLEnd()
-    webbrowser.open_new('file://' + os.getcwd() + '/Final/output.html')
+    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/output.html')
     v.set("")
 
 def menu_enter(): #sumbiting a country
@@ -90,7 +90,7 @@ def menu_enter(): #sumbiting a country
     root.update()
     main()
     writeHTMLEnd()
-    webbrowser.open_new('file://' + os.getcwd() + '/Final/output.html')
+    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/output.html')
     v.set("")
 
 def main():
@@ -140,7 +140,7 @@ def main():
 
             else:
                 myfile.close()
-                myfile = open("./Final/output.html","w")
+                myfile = open("./Assignment 1/Final/output.html","w")
                 myfile.write("Error has occured")
 
     else: #submiting a city
@@ -151,7 +151,7 @@ def main():
             if data['status'] == 'error':
                 print("Error")
                 myfile.close()
-                myfile = open("./Final/output.html","w")
+                myfile = open("./Assignment 1/Final/output.html","w")
                 myfile.write("Error has occured")
 
             else:
@@ -188,7 +188,7 @@ def main():
                 writeHTMLTable(data['data']['city']['name'], data['data']['aqi'], level, health, statement, color)
                 print("Successful!")
         else:
-            myfile = open("./Assignment 1/output.html","w")
+            myfile = open("./Assignment 1/Final/output.html","w")
             myfile.write("Error has occured")
             myfile.close()
 
