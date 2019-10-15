@@ -5,7 +5,6 @@ import os
 import time
 
 def writeHTMLHead(): 
-    global myfile
     myfile = open("./Assignment 1/Final/output.html","w")
     myfile.write("""<!DOCTYPE html>
     <html>
@@ -15,9 +14,10 @@ def writeHTMLHead():
     <link rel = "stylesheet" type = "text/css" href = "style.css" />
     </head>
     """)
+    myfile.close()
 
 def writeHTMLNav():
-    global myfile
+    myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write("""    <body>
         <div class="header" id = "home">
             <h1>Air Quality by City</h1>
@@ -27,9 +27,10 @@ def writeHTMLNav():
             <a href="#about">About</a>
     </div>
     """)
+    myfile.close()
 
 def writeHTMLTableTag():
-    global myfile
+    myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write("""<table>
             <tr>
                 <th>City</th>
@@ -38,9 +39,10 @@ def writeHTMLTableTag():
                 <th>Health Implications</th>
                 <th>Cautionary Statement</th>
             </tr>""")
+    myfile.close()
 
 def writeHTMLTable(city,aqi,level,health,statement,color):
-    global myfile
+    myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write(f"""
             <tr style = "background-color: {color};">
                 <td>{city}</td>
@@ -49,9 +51,10 @@ def writeHTMLTable(city,aqi,level,health,statement,color):
                 <td>{health}</td>
                 <td>{statement}</td>
             </tr>""")
+    myfile.close()
 
 def writeHTMLEnd():
-    global myfile
+    myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write("""
            </table> 
         </body>
@@ -64,7 +67,7 @@ canada = ["Toronto","Montreal","Vancouver","Calgary","Edmonton","Ottawa","Winnip
 united_states = ["New York City","San Francisco","Los Angeles","Seattle","Chicago","Boston","Portland","Miami","Las Vegas","Philadelphia"]
 china = ["Shanghai","Beijing","Chengdu","Hangzhou","Chongqing","Guangzhou","Shenzhen","Ürümqi","Xiamen"]
 england = ["London","Bristol","Liverpool","Manchester","Birmingham","Brighton","Oxford","Cambridge","Norwich"]
-germany = [""]
+France = ["Paris","Nice","Bordeaux","Lyon","Marseille","Toulouse","Strasbourg","Lille","Nantes"]
 
 countries_str = ["Canada","United States","China","England"] #list of countries
 countries = [canada,united_states,china,england] #list of list of cities
@@ -94,7 +97,6 @@ def menu_enter(): #sumbiting a country
     v.set("")
 
 def main():
-    global labtext, myfile
     writeHTMLHead()
     writeHTMLNav()
     writeHTMLTableTag()
@@ -139,9 +141,9 @@ def main():
                     writeHTMLTable(j, data['data']['aqi'], level, health, statement, color)
 
             else:
-                myfile.close()
-                myfile = open("./Assignment 1/Final/output.html","w")
+                myfile = open("./Assignment 1/Final/output.html","a")
                 myfile.write("Error has occured")
+                myfile.close()
 
     else: #submiting a city
         response = requests.get(f"https://api.waqi.info/feed/{gui_input}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
@@ -150,9 +152,9 @@ def main():
 
             if data['status'] == 'error':
                 print("Error")
-                myfile.close()
-                myfile = open("./Assignment 1/Final/output.html","w")
+                myfile = open("./Assignment 1/Final/output.html","a")
                 myfile.write("Error has occured")
+                myfile.close()
 
             else:
                 if type(data['data']['aqi']).__name__ != "int":
@@ -188,7 +190,7 @@ def main():
                 writeHTMLTable(data['data']['city']['name'], data['data']['aqi'], level, health, statement, color)
                 print("Successful!")
         else:
-            myfile = open("./Assignment 1/Final/output.html","w")
+            myfile = open("./Assignment 1/Final/output.html","a")
             myfile.write("Error has occured")
             myfile.close()
 
@@ -197,19 +199,17 @@ root = Tk()
 root.title("Air Quality API")
 root.geometry("500x350")
 
-labtext = ""
+# def test(event):
+#     print(event) #ensure that this line is indented
+# topframe = Frame(root,bg='blue',height='20')
+# topframe.pack(fill=X)
 
-def test(event):
-    print(event) #ensure that this line is indented
-topframe = Frame(root,bg='blue',height='20')
-topframe.pack(fill=X)
-
-can1 = Canvas(topframe,height='20',width='20',bg="blue",highlightthickness=0)
-can1.create_line(0, 5, 20, 5,fill='white')
-can1.create_line(0, 10, 20, 10,fill='white')
-can1.create_line(0, 15, 20, 15,fill='white')
-can1.bind("<Button-1>",test ) # keyword 
-can1.grid(row=0,column=0, padx=5, pady=5)
+# can1 = Canvas(topframe,height='20',width='20',bg="blue",highlightthickness=0)
+# can1.create_line(0, 5, 20, 5,fill='white')
+# can1.create_line(0, 10, 20, 10,fill='white')
+# can1.create_line(0, 15, 20, 15,fill='white')
+# can1.bind("<Button-1>",test ) # keyword 
+# can1.grid(row=0,column=0, padx=5, pady=5)
 
 spaceframe = Frame(root,height=20) #invisible frame
 spaceframe.pack()
