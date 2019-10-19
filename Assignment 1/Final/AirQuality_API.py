@@ -12,6 +12,7 @@ def writeHTMLHead():
     <title>Air Quality API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel = "stylesheet" type = "text/css" href = "style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     </head>
     """)
     myfile.close()
@@ -23,9 +24,10 @@ def writeHTMLNav():
             <h1>Air Quality by City</h1>
         </div>
         <div class="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-    </div>
+            <a class="active" href="output.html">Data</a>
+            <a href="about.html">About</a>
+            <a href="home.html">Home</a>
+        </div>
     """)
     myfile.close()
 
@@ -72,7 +74,7 @@ France = ["Paris","Nice","Bordeaux","Lyon","Marseille","Toulouse","Strasbourg","
 countries_str = ["Canada","United States","China","England"] #list of countries
 countries = [canada,united_states,china,england] #list of list of cities
 
-def entry_enter(): #submiting a city
+def entry_enter(): #submiting a city from gui
     global gui_input
     print(e1.get())
     gui_input = e1.get()
@@ -84,7 +86,7 @@ def entry_enter(): #submiting a city
     webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/output.html')
     v.set("")
 
-def menu_enter(): #sumbiting a country
+def menu_enter(): #sumbiting a country from gui
     global gui_input
     print(variable.get())
     gui_input = variable.get()
@@ -103,8 +105,12 @@ def main():
     
     if gui_input in countries_str: #sumbiting a country
         for j in countries[countries_str.index(gui_input)]:
-            response = requests.get(f"https://api.waqi.info/feed/{j}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
-            if (response.status_code == 200):
+            try:
+                response = requests.get(f"https://api.waqi.info/feed/{j}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
+            except:
+                response = None
+                print("Error occured")
+            if (response):
                 data = response.json()
                 
                 if type(data['data']['aqi']).__name__ != "int":
@@ -141,18 +147,21 @@ def main():
                     writeHTMLTable(j, data['data']['aqi'], level, health, statement, color)
 
             else:
-                myfile = open("./Assignment 1/Final/output.html","a")
+                myfile = open("./Assignment 1/Final/output.html","w")
                 myfile.write("Error has occured")
                 myfile.close()
 
     else: #submiting a city
-        response = requests.get(f"https://api.waqi.info/feed/{gui_input}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
-        if (response.status_code == 200):
+        try:
+            response = requests.get(f"https://api.waqi.info/feed/{gui_input}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
+        except:
+            response = None
+        if (response):
             data = response.json()
 
             if data['status'] == 'error':
                 print("Error")
-                myfile = open("./Assignment 1/Final/output.html","a")
+                myfile = open("./Assignment 1/Final/output.html","w")
                 myfile.write("Error has occured")
                 myfile.close()
 
@@ -190,32 +199,19 @@ def main():
                 writeHTMLTable(data['data']['city']['name'], data['data']['aqi'], level, health, statement, color)
                 print("Successful!")
         else:
-            myfile = open("./Assignment 1/Final/output.html","a")
+            myfile = open("./Assignment 1/Final/output.html","w")
             myfile.write("Error has occured")
             myfile.close()
 
 #-------------GUI-------------
 root = Tk()
 root.title("Air Quality API")
-root.geometry("500x350")
+root.geometry("400x250")
 
-# def test(event):
-#     print(event) #ensure that this line is indented
-# topframe = Frame(root,bg='blue',height='20')
-# topframe.pack(fill=X)
-
-# can1 = Canvas(topframe,height='20',width='20',bg="blue",highlightthickness=0)
-# can1.create_line(0, 5, 20, 5,fill='white')
-# can1.create_line(0, 10, 20, 10,fill='white')
-# can1.create_line(0, 15, 20, 15,fill='white')
-# can1.bind("<Button-1>",test ) # keyword 
-# can1.grid(row=0,column=0, padx=5, pady=5)
-
-spaceframe = Frame(root,height=20) #invisible frame
-spaceframe.pack()
+root.configure(background = 'Deep sky blue')
 
 frame1 = LabelFrame(root,borderwidth = 2, relief=RAISED, width=400,height=150)
-frame1.pack()
+frame1.pack(pady=20)
 
 lab1 = Label(frame1, text="Enter a city",width=30,height=0)
 lab1.grid(row=0,column=0)
@@ -227,10 +223,11 @@ b1 = Button(frame1, text="Sumbit",command=entry_enter)
 b1.grid(row=1, column=0,sticky=E,padx=10)
 
 lab2 = Label(root,text="- OR -")
-lab2.pack(pady=10)
+lab2.configure(background = 'Deep sky blue')
+lab2.pack()
 
 frame2 = LabelFrame(root,borderwidth = 2, relief=RAISED, width=400,height=150)
-frame2.pack(anchor=CENTER)
+frame2.pack(pady=20,anchor=CENTER)
 
 variable = StringVar(frame2)
 variable.set("    ") # default value
@@ -247,6 +244,7 @@ b2.grid(row=1, column=0,sticky=E,padx=10)
 
 v = StringVar()
 lab4 = Label(root, textvariable=v)
-lab4.pack()
+lab4.configure(background = 'Deep sky blue')
+lab4.pack(pady=5)
 
 root.mainloop()
