@@ -20,8 +20,9 @@ def writeHTMLHead():
 def writeHTMLNav():
     myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write("""    <body>
-        <div class="header" id = "home">
-            <h1>Air Quality by City</h1>
+        <div id = "home">
+            <img class = "icon" src="icon.png" alt="Trulli" width="50" height="50">
+            <p class="header">Air Quality by City</p>
         </div>
         <div class="navbar">
             <a class="active" href="output.html">Data</a>
@@ -59,6 +60,7 @@ def writeHTMLEnd():
     myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write("""
            </table> 
+           <img class = "skyline" style = "margin: 0px; opacity: 1" src="skyline.png" alt="icon" width="100%" height="350">
         </body>
     </html>
     """)
@@ -70,6 +72,7 @@ united_states = ["New York City","San Francisco","Los Angeles","Seattle","Chicag
 china = ["Shanghai","Beijing","Chengdu","Hangzhou","Chongqing","Guangzhou","Shenzhen","Ürümqi","Xiamen"]
 england = ["London","Bristol","Liverpool","Manchester","Birmingham","Brighton","Oxford","Cambridge","Norwich"]
 France = ["Paris","Nice","Bordeaux","Lyon","Marseille","Toulouse","Strasbourg","Lille","Nantes"]
+
 
 countries_str = ["Canada","United States","China","England"] #list of countries
 countries = [canada,united_states,china,england] #list of list of cities
@@ -83,7 +86,7 @@ def entry_enter(): #submiting a city from gui
     root.update()
     main()
     writeHTMLEnd()
-    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/output.html')
+    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/home.html')
     v.set("")
 
 def menu_enter(): #sumbiting a country from gui
@@ -95,7 +98,7 @@ def menu_enter(): #sumbiting a country from gui
     root.update()
     main()
     writeHTMLEnd()
-    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/output.html')
+    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/home.html')
     v.set("")
 
 def main():
