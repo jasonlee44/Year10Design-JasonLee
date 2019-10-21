@@ -10,8 +10,9 @@ body{
   /* background-image: url("./sky-banner.jpg"); */
   /* background-size: 100%; */
   color: rgb(0, 0, 0);
-  font-size: 20px;
-  margin-left: 60px;
+  font-size: 40px;
+  margin-left: 2px;
+  padding:0px;
 }
 
 .navbar {
@@ -44,7 +45,8 @@ table {
   border: 3px solid black;
   border-collapse: collapse;
   margin:60px;
-  margin-top:30px;
+  margin-top:48px;
+  margin-bottom: 20px;
 }
 
 th{
@@ -62,9 +64,22 @@ td, th {
 th:nth-child(3) {
   width:200px;
 }
+
 th:nth-child(4) {
   width:600px;
 }
+
 th:nth-child(5) {
   width:500px;
+}
+
+.icon{
+  float: left;
+  margin-left: 60px;
+  margin-top: 40px;
+  padding: 0px;
+}
+
+.skyline{
+  position: sticky;
 }
