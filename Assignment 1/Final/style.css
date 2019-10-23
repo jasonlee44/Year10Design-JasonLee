@@ -4,6 +4,14 @@ body{
   background-color: white;
   }
 
+#skyline{
+  background-size: 100% 50%;
+  background-image: url("skyline.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+}
+
 .header {
   float: left;
   /* text-align: Left; */
@@ -11,7 +19,8 @@ body{
   /* background-size: 100%; */
   color: rgb(0, 0, 0);
   font-size: 40px;
-  margin-left: 2px;
+  margin-left: 10px;
+  margin-top:30px;
   padding:0px;
 }
 
@@ -46,7 +55,7 @@ table {
   border-collapse: collapse;
   margin:60px;
   margin-top:48px;
-  margin-bottom: 20px;
+  margin-bottom: 400px;
 }
 
 th{
@@ -76,10 +85,15 @@ th:nth-child(5) {
 .icon{
   float: left;
   margin-left: 60px;
-  margin-top: 40px;
+  margin-top: 32px;
   padding: 0px;
 }
-
-.skyline{
-  position: sticky;
+.rect{
+  height: 400px;
+  width: relative;
+  margin-top: 30px;
+  margin-left: 60px;
+  margin-right: 60px;
+  background-color: rgba(240,115,121);
+  position: relative;
 }
