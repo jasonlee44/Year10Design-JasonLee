@@ -6,7 +6,7 @@ import os
 #each "section" of the html code is split up into different functions
 #this makes it eaiser for me to troubleshoot my code
 def writeHTMLHead():
-    myfile = open("./Assignment 1/Final/output.html","w")
+    myfile = open("output.html","w")
     myfile.write("""<!DOCTYPE html>
     <html>
     <head>
@@ -19,7 +19,7 @@ def writeHTMLHead():
     myfile.close()
 
 def writeHTMLNav():
-    myfile = open("./Assignment 1/Final/output.html","a")
+    myfile = open("output.html","a")
     myfile.write("""    <body id="skyline">
         <div id = "home">
             <img class = "icon" src="icon.png" alt="Trulli" width="50" height="50">
@@ -34,7 +34,7 @@ def writeHTMLNav():
     myfile.close()
 
 def writeHTMLTableTag():
-    myfile = open("./Assignment 1/Final/output.html","a")
+    myfile = open("output.html","a")
     myfile.write("""<table>
             <tr>
                 <th>City</th>
@@ -47,7 +47,7 @@ def writeHTMLTableTag():
 
 def writeHTMLTable(city,aqi,level,health,statement,color):
     #these variables are used to write the json data to the html file
-    myfile = open("./Assignment 1/Final/output.html","a")
+    myfile = open("output.html","a")
     myfile.write(f"""
             <tr style = "background-color: {color};">
                 <td>{city}</td>
@@ -59,7 +59,7 @@ def writeHTMLTable(city,aqi,level,health,statement,color):
     myfile.close()
 
 def writeHTMLEnd():
-    myfile = open("./Assignment 1/Final/output.html","a")
+    myfile = open("output.html","a")
     myfile.write("""
            </table> 
         </body>
@@ -87,7 +87,7 @@ def entry_enter(): #submiting a city from gui
     main()
     writeHTMLEnd()
     #opens the default web broswer
-    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/home.html')
+    webbrowser.open_new('file://' + os.getcwd() + '/home.html')
     v.set("")
 
 def menu_enter(): #sumbiting a country from gui
@@ -99,7 +99,7 @@ def menu_enter(): #sumbiting a country from gui
     main()
     writeHTMLEnd()
     #opens the default web broswer
-    webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/home.html')
+    webbrowser.open_new('file://' + os.getcwd() + '/home.html')
     v.set("")
 
 def main():
@@ -152,7 +152,7 @@ def main():
                     writeHTMLTable(j, data['data']['aqi'], level, health, statement, color)
 
             else:
-                myfile = open("./Assignment 1/Final/output.html","w")
+                myfile = open("output.html","w")
                 myfile.write("Error has occured")
                 myfile.close()
 
@@ -167,7 +167,7 @@ def main():
 
             if data['status'] == 'error': #if city entered causes an error
                 print("Error")
-                myfile = open("./Assignment 1/Final/output.html","w")
+                myfile = open("output.html","w")
                 myfile.write("Error has occured")
                 myfile.close()
 
@@ -205,7 +205,7 @@ def main():
                 writeHTMLTable(data['data']['city']['name'], data['data']['aqi'], level, health, statement, color)
                 print("Successful!")
         else:
-            myfile = open("./Assignment 1/Final/output.html","w")
+            myfile = open("output.html","w")
             myfile.write("Error has occured")
             myfile.close()
 
