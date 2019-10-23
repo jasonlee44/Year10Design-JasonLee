@@ -2,9 +2,8 @@ import requests
 from tkinter import *
 import webbrowser
 import os
-import time
 
-def writeHTMLHead(): 
+def writeHTMLHead():#each "section" of the html code is split up into different functions
     myfile = open("./Assignment 1/Final/output.html","w")
     myfile.write("""<!DOCTYPE html>
     <html>
@@ -19,7 +18,7 @@ def writeHTMLHead():
 
 def writeHTMLNav():
     myfile = open("./Assignment 1/Final/output.html","a")
-    myfile.write("""    <body>
+    myfile.write("""    <body id="skyline">
         <div id = "home">
             <img class = "icon" src="icon.png" alt="Trulli" width="50" height="50">
             <p class="header">Air Quality by City</p>
@@ -44,7 +43,7 @@ def writeHTMLTableTag():
             </tr>""")
     myfile.close()
 
-def writeHTMLTable(city,aqi,level,health,statement,color):
+def writeHTMLTable(city,aqi,level,health,statement,color): #these variables are used to write the json data to the html file
     myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write(f"""
             <tr style = "background-color: {color};">
@@ -60,7 +59,6 @@ def writeHTMLEnd():
     myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write("""
            </table> 
-           <img class = "skyline" style = "margin: 0px; opacity: 1" src="skyline.png" alt="icon" width="100%" height="350">
         </body>
     </html>
     """)
@@ -74,15 +72,15 @@ england = ["London","Bristol","Liverpool","Manchester","Birmingham","Brighton","
 France = ["Paris","Nice","Bordeaux","Lyon","Marseille","Toulouse","Strasbourg","Lille","Nantes"]
 
 
-countries_str = ["Canada","United States","China","England"] #list of countries
-countries = [canada,united_states,china,england] #list of list of cities
+countries_str = ["Canada","United States","China","England","France"] #list of countries
+countries = [canada,united_states,china,england,France] #list of list of cities
 
 def entry_enter(): #submiting a city from gui
     global gui_input
     print(e1.get())
     gui_input = e1.get()
     v.set("You will be redirected shortly")
-    time.sleep(1)
+    # time.sleep(1)
     root.update()
     main()
     writeHTMLEnd()
@@ -94,7 +92,7 @@ def menu_enter(): #sumbiting a country from gui
     print(variable.get())
     gui_input = variable.get()
     v.set("You will be redirected shortly")
-    time.sleep(1)
+    # time.sleep(1)
     root.update()
     main()
     writeHTMLEnd()
@@ -108,7 +106,7 @@ def main():
     
     if gui_input in countries_str: #sumbiting a country
         for j in countries[countries_str.index(gui_input)]:
-            try:
+            try: #checks for error
                 response = requests.get(f"https://api.waqi.info/feed/{j}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
             except:
                 response = None
@@ -155,14 +153,14 @@ def main():
                 myfile.close()
 
     else: #submiting a city
-        try:
+        try: #checks for error
             response = requests.get(f"https://api.waqi.info/feed/{gui_input}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
         except:
             response = None
         if (response):
             data = response.json()
 
-            if data['status'] == 'error':
+            if data['status'] == 'error': #if city entered causes an error
                 print("Error")
                 myfile = open("./Assignment 1/Final/output.html","w")
                 myfile.write("Error has occured")
@@ -235,7 +233,7 @@ frame2.pack(pady=20,anchor=CENTER)
 variable = StringVar(frame2)
 variable.set("    ") # default value
 
-m1 = OptionMenu(frame2, variable, "Canada", "United States", "China","England")
+m1 = OptionMenu(frame2, variable, "Canada", "United States", "China","England","France")
 m1.config(width=17)
 m1.grid(row=1,column=0,sticky=W,padx=10)
 
