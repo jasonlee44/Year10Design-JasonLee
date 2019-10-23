@@ -3,7 +3,9 @@ from tkinter import *
 import webbrowser
 import os
 
-def writeHTMLHead():#each "section" of the html code is split up into different functions
+#each "section" of the html code is split up into different functions
+#this makes it eaiser for me to troubleshoot my code
+def writeHTMLHead():
     myfile = open("./Assignment 1/Final/output.html","w")
     myfile.write("""<!DOCTYPE html>
     <html>
@@ -43,7 +45,8 @@ def writeHTMLTableTag():
             </tr>""")
     myfile.close()
 
-def writeHTMLTable(city,aqi,level,health,statement,color): #these variables are used to write the json data to the html file
+def writeHTMLTable(city,aqi,level,health,statement,color):
+    #these variables are used to write the json data to the html file
     myfile = open("./Assignment 1/Final/output.html","a")
     myfile.write(f"""
             <tr style = "background-color: {color};">
@@ -80,10 +83,10 @@ def entry_enter(): #submiting a city from gui
     print(e1.get())
     gui_input = e1.get()
     v.set("You will be redirected shortly")
-    # time.sleep(1)
     root.update()
     main()
     writeHTMLEnd()
+    #opens the default web broswer
     webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/home.html')
     v.set("")
 
@@ -92,10 +95,10 @@ def menu_enter(): #sumbiting a country from gui
     print(variable.get())
     gui_input = variable.get()
     v.set("You will be redirected shortly")
-    # time.sleep(1)
     root.update()
     main()
     writeHTMLEnd()
+    #opens the default web broswer
     webbrowser.open_new('file://' + os.getcwd() + '/Assignment 1/Final/home.html')
     v.set("")
 
@@ -104,7 +107,8 @@ def main():
     writeHTMLNav()
     writeHTMLTableTag()
     
-    if gui_input in countries_str: #sumbiting a country
+    if gui_input in countries_str:
+    #checks if the input from GUI is a country
         for j in countries[countries_str.index(gui_input)]:
             try: #checks for error
                 response = requests.get(f"https://api.waqi.info/feed/{j}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
@@ -152,7 +156,8 @@ def main():
                 myfile.write("Error has occured")
                 myfile.close()
 
-    else: #submiting a city
+    else:
+    #if the input from GUI is a city
         try: #checks for error
             response = requests.get(f"https://api.waqi.info/feed/{gui_input}/?token=e6b58a3aa996953cceed553f70c04c07342ce32e")
         except:
